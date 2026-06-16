@@ -12,7 +12,7 @@ body{
     background:#666;
 }
 
-/* SPLASH */
+/* SPLASH FIX */
 #splash{
     position:fixed;
     top:0;
@@ -24,6 +24,7 @@ body{
     justify-content:center;
     align-items:center;
     z-index:9999;
+    pointer-events:none;
 }
 
 #splash img{
@@ -105,9 +106,10 @@ button{
 </div>
 
 <script>
-// splash hilang
+// splash aman + remove biar gak ganggu touch
 setTimeout(()=>{
-document.getElementById("splash").style.display="none";
+    let splash = document.getElementById("splash");
+    if (splash) splash.remove();
 },3000);
 
 // pindah checkout
