@@ -1,119 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
 
-<style>
-body{
-    font-family:Arial;
-    background:#f2f2f2;
-    padding:20px;
-}
+    <style>
+      body {
+        font-family: Arial;
+        background: #f2f2f2;
+        padding: 20px;
+      }
 
-.box{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-}
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
 
-input, textarea{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+      }
 
-button{
-    width:100%;
-    padding:12px;
-    background:green;
-    color:white;
-    border:none;
-    border-radius:8px;
-}
+      button {
+        width: 100%;
+        padding: 12px;
+        background: green;
+        color: white;
+        border: none;
+        border-radius: 8px;
+      }
 
-/* POPUP */
-.popup{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
+      /* POPUP */
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
 
-.popup-content{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    text-align:center;
-    width:80%;
-    max-width:300px;
-}
+      .popup-content {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        width: 80%;
+        max-width: 300px;
+      }
 
-.popup-content h2{
-    color:green;
-}
+      .popup-content h2 {
+        color: green;
+      }
 
-.popup-content button{
-    margin-top:15px;
-    background:#333;
-}
-</style>
-</head>
+      .popup-content button {
+        margin-top: 15px;
+        background: #333;
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <div class="box">
+      <h2>Checkout</h2>
 
-<div class="box">
-<h2>Checkout</h2>
+      <p>Produk: <b id="produk"></b></p>
 
-<p>Produk: <b id="produk"></b></p>
+      <input id="nama" placeholder="Nama kamu" />
+      <textarea id="alamat" placeholder="Alamat lengkap"></textarea>
+      <input id="nohp" placeholder="No HP" />
 
-<input id="nama" placeholder="Nama kamu">
-<textarea id="alamat" placeholder="Alamat lengkap"></textarea>
-<input id="nohp" placeholder="No HP">
+      <button onclick="kirim()">Kirim Pesanan</button>
+    </div>
 
-<button onclick="kirim()">Kirim Pesanan</button>
-</div>
-
-<!-- POPUP SUKSES -->
-<div class="popup" id="popup">
-    <div class="popup-content">
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+      <div class="popup-content">
         <h2>✔ Berhasil!</h2>
         <p>Pesanan kamu sudah terkirim.</p>
         <button onclick="tutup()">OK</button>
+      </div>
     </div>
-</div>
 
-<script>
-document.getElementById("produk").innerText =
-localStorage.getItem("produkDipilih");
+    <script>
+      // amanin localStorage
+      let produk = localStorage.getItem("produkDipilih");
+      document.getElementById("produk").innerText = produk
+        ? produk
+        : "Produk tidak dipilih";
 
-function kirim(){
-    let nama = document.getElementById("nama").value;
-    let alamat = document.getElementById("alamat").value;
-    let nohp = document.getElementById("nohp").value;
+      function kirim() {
+        let nama = document.getElementById("nama").value;
+        let alamat = document.getElementById("alamat").value;
+        let nohp = document.getElementById("nohp").value;
 
-    if(!nama || !alamat || !nohp){
-        alert("Isi semua dulu!");
-        return;
-    }
+        if (!nama || !alamat || !nohp) {
+          alert("Isi semua dulu!");
+          return;
+        }
 
-    // tampilkan popup
-    document.getElementById("popup").style.display = "flex";
-}
+        document.getElementById("popup").style.display = "flex";
+      }
 
-function tutup(){
-    document.getElementById("popup").style.display = "none";
-
-    // balik ke halaman awal (opsional)
-    window.location.href = "index.html";
-}
-</script>
-
-</body>
+      function tutup() {
+        document.getElementById("popup").style.display = "none";
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
 </html>
